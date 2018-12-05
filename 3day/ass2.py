@@ -14,8 +14,16 @@ def claim2mat(s):
 with open('input.txt') as fp:
 	lines = fp.readlines()
 	fabric = np.zeros((1000,1000))
+	prevOverlaps = 1000
+	currLine = ''
 	for l in lines:
 		lMat = claim2mat(l)
 		fabric = np.add(fabric,lMat)
-	fabric = fabric >1
+		overlapMat = fabric > 1
+		nOfOverlaps = np.count_nonzero(overlapMat)
+		if nOfOverlaps == prevOverlaps:
+			currLine = l
+			break
+		else:
+			prevOverlaps = nOfOverlaps
 	print('Square inches with multiple claims: ' + str(np.count_nonzero(fabric)))
