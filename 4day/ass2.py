@@ -17,8 +17,6 @@ with open('sorted_input.txt') as fp:
 				guardSleepMatrix[currentID][i] += 1
 		else:
 			raise ValueError('Log \"' + l + '\" does not match any conditions')
-	sums = np.sum(guardSleepMatrix,axis=1)
-	worstGuard = np.argmax(sums)
-	worstMinute = np.argmax(guardSleepMatrix[worstGuard,:])
-	print('The worst guard is {0}. They was most asleep at 00:{1}. The checksum is thus {2}'.format(str(worstGuard),str(worstMinute),str(worstGuard*worstMinute))) 
+	worstIdx = np.unravel_index(np.argmax(guardSleepMatrix, axis=None), guardSleepMatrix.shape)
+	print('The worst minute is 00:{0}. The guard associated is {1}. The checksum is thus {2}'.format(str(worstIdx[1]),str(worstIdx[0]),str(worstIdx[0]*worstIdx[1]))) 
 		
