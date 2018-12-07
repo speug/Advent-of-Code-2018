@@ -14,9 +14,10 @@ def react(l,currentIdx,nextIdx,s):
 			react(l,nextCurrIdx,nextIdx+1,s)
 
 with open('input.txt') as fp:
-	polymerList = list(fp.read()) 
+	polymerList = list('dabAcCaCBAcCcaDA')
 	s = len(polymerList)
 	for i in range(0,s):
 		react(polymerList,i,i+1,s)
 	reactedList = list(filter(lambda a: a != '',polymerList))
 	print(len(reactedList))	
+	print(''.join(reactedList))
